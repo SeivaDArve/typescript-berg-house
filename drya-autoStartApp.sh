@@ -153,10 +153,23 @@ function f_partilhar_webpage_com_smartphone_browser {
    echo "   http://192.168.1.42:3000"
 }
 
+function f_partilhar_temporariamente_localhost_com_o_mundo {
+   echo "ngrok é um software que partilha o nosso local host publicamente (ate Ctrl-C)"
+   echo " exemplo: http://abcd1234.ngrok.io"
+   echo
+   echo "Porem, nao vem nos repositorios padrao do Fedora Linux"
+   echo ' > mas pode ser instalado com `snap`'
+   echo ' > `sudo snap install ngrok`'
+   echo 
+   echo "Fornece o numero da porta ao ngrok para ele criar automaticamente um endereco publico"
+   echo ' > `ngrok http 3000`'
+}
+
 function f_exec {
    #f_create_all_files
    f_corrigir_erro
    f_exec_web_server
    f_partilhar_webpage_com_smartphone_browser
+   f_partilhar_temporariamente_localhost_com_o_mundo
 }
 f_exec
