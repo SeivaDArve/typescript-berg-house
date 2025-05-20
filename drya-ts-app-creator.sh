@@ -2,14 +2,33 @@
 # Title: Criar app que diz "hello World" No browser
 # Description: Script que cria automativamente esse projeto
 
+# Criado pelo ChatGPT, em vez de fornecer um .zip com todos estes ficheiros, escreveu este script bash que imita tudo
+
 clear 
 
-function f_create_all_files {
-   # Criado pelo ChatGPT, em vez de fornecer um .zip com todos estes ficheiros, escreveu este script bash que imita tudo
+function f_db {
+   echo "Debug stop"
+   exit 
+}
 
-   # Cria a pasta do projeto
-      mkdir hello-web-rn && cd hello-web-rn
+function f_create_project_directory {
+   # Cria a pasta do projeto (petgunta o nome ao utilizador)   
+      # exemplo: `mkdir hello-web-rn && cd hello-web-rn`  
+
+   # Perguntar nome ao utilizador
+      read -p "DRYa: Ts: Introduza novo nome de projeto: " v_name
+
+   # Navegar para a pasta de projetos e criar o novo projeto
+      v_projetos=${v_REPOS_CENTER}/typescript-berg-house/all/Projetos
+      cd $v_projetos
+
+      mkdir $v_name && cd $v_name  
+}
+
+function f_config_com_npm {
+   # Utilizar `npm` (node package manager)
       npm init -y
+
 
    # Instala as dependências principais
       npm install     \
@@ -31,9 +50,16 @@ function f_create_all_files {
 
    # Cria a estrutura de ficheiros
       mkdir src public
+}
 
-   # Cria o index.tsx
-   cat > src/index.tsx << 'EOF'
+function f_create_file_from_heredoc_1 {
+   # Criar o index.tsx
+   # uDev: Apagar 3 primeiros espacos em branco em cada linha
+
+   # A funcao anterior `f_config_com_npm` ja criou a pasta ./src mas, se por motivos de debug essa fx for anulada/comentada/apagada, entao teremos de criar essa pasta de novo
+      mkdir -p src
+
+   cat > src/index.tsx << "EOF"
    import React from 'react';
    import { AppRegistry, Text, View } from 'react-native';
    import { name as appName } from '../package.json';
@@ -62,10 +88,14 @@ function f_create_all_files {
        <div id="root"></div>
      </body>
    </html>
-   EOF
+EOF
+}
 
+function f_create_file_from_heredoc_2 {
    # Cria o tsconfig.json
-   cat > tsconfig.json << 'EOF'
+   # uDev: Apagar 3 primeiros espacos em branco em cada linha
+
+   cat > tsconfig.json << "EOF"
    {
      "compilerOptions": {
        "target": "es6",
@@ -79,9 +109,14 @@ function f_create_all_files {
      },
      "include": ["src"]
    }
-   EOF
+EOF
+}
 
+
+function f_create_file_from_heredoc_3 {
    # Cria o webpack.config.js
+   # uDev: Apagar 3 primeiros espacos em branco em cada linha
+
    cat > webpack.config.js << 'EOF'
    const path = require('path');
    const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -118,11 +153,23 @@ function f_create_all_files {
        port: 3000
      }
    };
-   EOF
+EOF
+}
 
+
+function f_create_all_files {
+   # Criar ficheiros apartir deste script (em vez de compactar em .zip)
+
+   f_create_file_from_heredoc_1
+   f_create_file_from_heredoc_2
+   f_create_file_from_heredoc_3
+}
+ 
+
+function f_npx {
    # Atualiza o package.json para definir os scripts
    npx npm-add-script -k start -v "webpack serve --mode development"
-   npx npm-add-script -k build -v "webpack --mode production
+   npx npm-add-script -k build -v "webpack --mode production"
 }
 
 function f_corrigir_erro {
@@ -156,7 +203,7 @@ function f_partilhar_webpage_com_smartphone_browser {
    echo "     hot: true,"
    echo "     port: 3000,"
    echo "     host: '0.0.0.0' // <-- esta linha é essencial"
-   echo "   }
+   echo "   }"
    echo
    echo "3. recomecar o servidor:"
    echo '   `npm run start`'
@@ -179,7 +226,11 @@ function f_partilhar_temporariamente_localhost_com_o_mundo {
 }
 
 function f_exec {
-   #f_create_all_files
+   f_create_project_directory
+   f_config_com_npm
+   f_create_all_files
+   #f_db
+   f_npx 
    f_corrigir_erro
    f_exec_web_server
    f_partilhar_webpage_com_smartphone_browser
