@@ -8,17 +8,29 @@ function f_create_all_files {
    # Criado pelo ChatGPT, em vez de fornecer um .zip com todos estes ficheiros, escreveu este script bash que imita tudo
 
    # Cria a pasta do projeto
-   mkdir hello-web-rn && cd hello-web-rn
-   npm init -y
+      mkdir hello-web-rn && cd hello-web-rn
+      npm init -y
 
    # Instala as dependências principais
-   npm install react react-dom react-native react-native-web
+      npm install     \
+         react        \
+         react-dom    \
+         react-native \
+         react-native-web
 
    # Instala ferramentas de desenvolvimento
-   npm install --save-dev typescript @types/react @types/react-dom webpack webpack-cli webpack-dev-server ts-loader html-webpack-plugin
+      npm install --save-dev \
+         typescript          \
+         @types/react        \
+         @types/react-dom    \
+         webpack             \
+         webpack-cli         \
+         webpack-dev-server  \
+         ts-loader           \ 
+         html-webpack-plugin
 
    # Cria a estrutura de ficheiros
-   mkdir src public
+      mkdir src public
 
    # Cria o index.tsx
    cat > src/index.tsx << 'EOF'
