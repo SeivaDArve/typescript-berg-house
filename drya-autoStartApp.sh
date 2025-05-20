@@ -163,6 +163,7 @@ function f_partilhar_temporariamente_localhost_com_o_mundo {
    echo 
    echo "Fornece o numero da porta ao ngrok para ele criar automaticamente um endereco publico"
    echo ' > `ngrok http 3000`'
+   echo '    (agora este software, apesar de ser gratis, pede para criar conta de utilizador)' 
 }
 
 function f_exec {
