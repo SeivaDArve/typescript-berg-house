@@ -17,14 +17,32 @@ function f_create_project_directory {
    # Cria a pasta do projeto (petgunta o nome ao utilizador)   
       # exemplo: `mkdir hello-web-rn && cd hello-web-rn`  
 
-   # Perguntar nome ao utilizador
-      read -p "DRYa: Ts: Introduza novo nome de projeto: " v_name
-
    # Navegar para a pasta de projetos e criar o novo projeto
-      v_projetos=${v_REPOS_CENTER}/typescript-berg-house/all/Projetos
+      v_projetos=${v_REPOS_CENTER}/typescript-berg-house/all/projetos
       cd $v_projetos
 
-      mkdir $v_name && cd $v_name  
+
+   function f_utilizando_expo {
+      echo "Se utiliza expo, o script expo ja vai perguntar o nome do peojeto e criar pasta"
+   }
+
+   function f_nao_utilizando_expo {
+      # Perguntar nome ao utilizador
+         read -p "DRYa: Ts: Introduza novo nome de projeto: " v_name
+
+         #mkdir $v_name && cd $v_name  
+   }
+
+
+   echo    "DRYa: Criar projeto"
+   echo    " > Quer usar expo?     (a)"
+   echo    " > Nao quer usar expo? (b)"
+   read -p " > a ou b? " v_ans
+   
+   [[ $v_ans == "a" ]] && f_utilizando_expo
+   [[ $v_ans == "b" ]] && f_nao_utilizando_expo 
+
+   echo
 }
 
 function f_config_com_npm {
