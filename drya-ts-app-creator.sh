@@ -253,6 +253,28 @@ function f_detect_weather_using_expo_or_not {
    fi
 }
 
+function f_add_gitignore {
+   # Criar ficheiro .gitignore
+   
+   :'
+   Nem sempre os templates que usamos para criar nova app vem com .gitignore e ha uma pasta muito importante para se adicionar ao .gitignore
+   
+   Pasta importante a adicionar: "node_modules/" 
+   
+   Apartir do ficheiro package.json da para criar package-lock.json e node_modules/
+   
+   O arquivo responsável por recriar a pasta node_modules/ do zero é o package.json — e opcionalmente o package-lock.json (ou yarn.lock, se usar Yarn).
+
+   Se tivermos apenas package.json, podemos executar `npm install` para ler todas as dependências listadas em package.json, baixar e instalar todas no node_modules/ e criar (ou atualizar) o package-lock.json
+
+   Se ainda existir "package-lock.json" no sistema ao executar `npm install` entao isso garante que as versões exatas travadas no lockfile sejam usadas.
+
+   '
+
+   echo "uDev: Criar .gitignore e adicionar node_modules/"
+
+}
+
 function f_exec {
    f_create_project_directory
    f_config_com_npm
@@ -264,5 +286,6 @@ function f_exec {
    f_partilhar_webpage_com_smartphone_browser
    f_partilhar_temporariamente_localhost_com_o_mundo
    f_detect_weather_using_expo_or_not
+   f_add_gitignore 
 }
 f_exec
