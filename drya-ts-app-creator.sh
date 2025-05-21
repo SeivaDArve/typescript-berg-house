@@ -4,6 +4,8 @@
 
 # Criado pelo ChatGPT, em vez de fornecer um .zip com todos estes ficheiros, escreveu este script bash que imita tudo
 
+# uDev: Criar apk para playstore. Com nome da nova empresa, com novo email. (Exemplos de nomes na empresa de software: onPress)
+
 clear 
 
 function f_db {
@@ -225,6 +227,32 @@ function f_partilhar_temporariamente_localhost_com_o_mundo {
    echo '    (agora este software, apesar de ser gratis, pede para criar conta de utilizador)' 
 }
 
+function f_detect_weather_using_expo_or_not {
+   # Como saber se estamos no expo managed workfow ou se estamos no  React Native Bare workflow?
+   
+   :' Comwntario:
+
+      `grep -q padrao ficheiro.txt`  
+      -q, --quiet, --silent
+          Quiet; do not write anything to standard output.  Exit
+          immediately with zero status if any match is found,
+          even if an error was detected.
+   '
+
+   if [ -f "app.json" ] && grep -q '"expo"' app.json; then
+      if [ -d "android" ] && [ -d "ios" ]; then
+          echo "React Native Bare Workflow (ejetado do Expo)"
+      else
+          echo "Expo Managed Workflow"
+      fi
+
+   elif [ -f "package.json" ] && grep -q '"react-native"' package.json; then
+       echo "React Native Bare Workflow (sem Expo)"
+   else
+       echo "Não parece ser um projeto React Native ou Expo"
+   fi
+}
+
 function f_exec {
    f_create_project_directory
    f_config_com_npm
@@ -235,5 +263,6 @@ function f_exec {
    f_exec_web_server
    f_partilhar_webpage_com_smartphone_browser
    f_partilhar_temporariamente_localhost_com_o_mundo
+   f_detect_weather_using_expo_or_not
 }
 f_exec
